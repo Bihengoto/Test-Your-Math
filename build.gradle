@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+apply plugin: 'application'
+
+archivesBaseName = "calculation"
+version = '1.0'
+mainClassName = "App"
+applicationName = "calculation"
+group 'com.mahugu'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.0-M1')
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0-M1'
+
+    compile group: 'com.sparkjava', name: 'spark-template-velocity', version: '2.7.1'
+    compile group: 'org.apache.spark', name: 'spark-core_2.12', version: '2.4.1'
+
+    compile group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
+    compile group: 'org.postgresql', name: 'postgresql', version: "9.4-1201-jdbc41"
+    compile 'org.slf4j:slf4j-simple:1.7.21'
+}
+
+defaultTasks = ['clean']
+task stage(dependsOn: ['clean', 'installDist'])
